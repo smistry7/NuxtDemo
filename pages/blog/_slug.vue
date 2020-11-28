@@ -5,20 +5,29 @@
     <nav>
       <ul class="nav nav-pills">
         <li class="nav-item" v-for="link of article.toc" :key="link.id">
-          <NuxtLink :to="`#${link.id}`" class="nav-link">{{ link.text }}</NuxtLink>
+          <NuxtLink :to="`#${link.id}`" class="nav-link">{{
+            link.text
+          }}</NuxtLink>
         </li>
       </ul>
     </nav>
     <img :src="article.img" :alt="article.alt" />
     <p>Article last updated: {{ formatDate(article.updatedAt) }}</p>
     <nuxt-content :document="article" />
+    <author :author="article.author" />
+    <prev-next :prev="prev" :next="next" />
   </article>
 </template>
 <script>
 export default {
   async asyncData({ $content, params }) {
     const article = await $content('articles', params.slug).fetch()
-    return { article }
+    const [prev, next] = await $content('articles')
+      .only(['title', 'slug'])
+      .sortBy('createdAt', 'asc')
+      .surround(params.slug)
+      .fetch()
+    return { article, prev, next }
   },
   methods: {
     formatDate(date) {
