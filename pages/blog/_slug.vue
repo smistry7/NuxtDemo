@@ -1,21 +1,24 @@
 <template>
   <article>
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.description }}</p>
-    <nav>
-      <ul class="nav nav-pills">
-        <li class="nav-item" v-for="link of article.toc" :key="link.id">
-          <NuxtLink :to="`#${link.id}`" class="nav-link">{{
-            link.text
-          }}</NuxtLink>
-        </li>
-      </ul>
-    </nav>
-    <img :src="article.img" :alt="article.alt" />
-    <p>Article last updated: {{ formatDate(article.updatedAt) }}</p>
-    <nuxt-content :document="article" />
-    <author :author="article.author" />
-    <prev-next :prev="prev" :next="next" />
+    <navigation></navigation>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+      <h1>{{ article.title }}</h1>
+      <p>{{ article.description }}</p>
+      <nav>
+        <ul class="nav nav-pills">
+          <li class="nav-item" v-for="link of article.toc" :key="link.id">
+            <NuxtLink :to="`#${link.id}`" class="nav-link">{{
+              link.text
+            }}</NuxtLink>
+          </li>
+        </ul>
+      </nav>
+      <img :src="article.img" :alt="article.alt" />
+      <p>Article last updated: {{ formatDate(article.updatedAt) }}</p>
+      <nuxt-content :document="article" />
+      <author :author="article.author" />
+      <prev-next :prev="prev" :next="next" />
+    </main>
   </article>
 </template>
 <script>
