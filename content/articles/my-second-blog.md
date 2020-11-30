@@ -1,8 +1,8 @@
 ---
 title: My second Blog Post
 description: Learning how to use @nuxt/content to create a blog
-img: first-blog-post.jpg
 alt: my first blog post
+img: https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg
 author:
   name: Shyam   
   bio: ShyamRambles

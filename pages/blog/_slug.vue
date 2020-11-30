@@ -1,25 +1,45 @@
 <template>
-  <article>
-    <navigation></navigation>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
-      <h1>{{ article.title }}</h1>
-      <p>{{ article.description }}</p>
-      <nav>
-        <ul class="nav nav-pills">
-          <li class="nav-item" v-for="link of article.toc" :key="link.id">
-            <NuxtLink :to="`#${link.id}`" class="nav-link">{{
-              link.text
-            }}</NuxtLink>
-          </li>
-        </ul>
-      </nav>
-      <img :src="article.img" :alt="article.alt" />
-      <p>Article last updated: {{ formatDate(article.updatedAt) }}</p>
-      <nuxt-content :document="article" />
-      <author :author="article.author" />
-      <prev-next :prev="prev" :next="next" />
-    </main>
-  </article>
+  <div>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 sidenav">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <h3>ShyamRambles</h3>
+              <li class="nav-item"><a class="nav-link">Home</a></li>
+              <li class="nav-item">
+                <NuxtLink class="nav-link" to="/">Articles</NuxtLink>
+              </li>
+              <li class="nav-item">
+                <NuxtLink class="nav-link" to="/music">Music</NuxtLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+          <article>
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.description }}</p>
+            <nav>
+              <ul class="nav nav-pills">
+                <li class="nav-item" v-for="link of article.toc" :key="link.id">
+                  <NuxtLink :to="`#${link.id}`" class="nav-link">{{
+                    link.text
+                  }}</NuxtLink>
+                </li>
+              </ul>
+            </nav>
+            <img :src="article.img" :alt="article.alt" />
+            <p>Article last updated: {{ formatDate(article.updatedAt) }}</p>
+            <nuxt-content :document="article" />
+            <author :author="article.author" />
+            <prev-next :prev="prev" :next="next" />
+          </article>
+        </main>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
