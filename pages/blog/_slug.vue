@@ -2,21 +2,7 @@
   <div>
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 sidenav">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <h3>ShyamRambles</h3>
-              <li class="nav-item"><a class="nav-link">Home</a></li>
-              <li class="nav-item">
-                <NuxtLink class="nav-link" to="/">Articles</NuxtLink>
-              </li>
-              <li class="nav-item">
-                <NuxtLink class="nav-link" to="/music">Music</NuxtLink>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
+        <Navigation></Navigation>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
           <article>
             <h1>{{ article.title }}</h1>
